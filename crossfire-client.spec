@@ -1,14 +1,14 @@
 Summary:	Crossfire client.
 Name:		crossfire-client
-Version:	0.95.8
+Version:	0.98.0
 Release:	1
 License:	GPL
 Group:		Applications/Games
 Group(de):	Applikationen/Spiele
 Group(pl):	Aplikacje/Gry
 Source0:	ftp://ftp.scruz.net/users/mwedel/public/%{name}-%{version}.tar.gz
+#Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/crossfire/%{name}-%{version}.tar.gz
 Source1:	client-0.95.2-raw-sounds.tgz
-Patch0:		%{name}-noalsa.patch
 URL:		http://crossfire.real-time.com
 BuildRequires:	XFree86-devel
 BuildRequires:	gtk+-devel
@@ -61,15 +61,14 @@ compete in the same "world".
 
 %prep
 %setup -q -a1
-%patch0 -p1
 
 %build
 for l in sounds.dist soundsdef.h ; do
 	mv $l $l.bak
 	sed -e"s@/usr/local/lib/@%{_datadir}/cfclient/@" -e's@\.au@.raw@' < $l.bak > $l
 done
-autoconf
 %configure \
+	--disable-alsa \
 	--with-sound-dir=%{_datadir}/cfclient/sounds
 %{__make}
 
