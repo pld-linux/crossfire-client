@@ -1,10 +1,10 @@
-%define		sndver	1.1.0
-%define		imgver	1.3.0
+%define		sndver	1.4.0
+%define		imgver	1.4.0
 Summary:	Crossfire client
 Summary(pl):	Klient Crossfire
 Name:		crossfire-client
-Version:	1.3.0
-Release:	1
+Version:	1.4.0
+Release:	0.1
 License:	GPL
 Group:		Applications/Games
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/crossfire/%{name}-%{version}.tar.gz
@@ -118,10 +118,12 @@ Ten pakiet zawiera pliki wspólne dla wszystkich klientów Crossfire.
 %setup  -q -a1
 %patch0 -p1
 mv -f sounds cfsounds
+%if %{?_without_images:0}%{?!_without_images:1}
 install -d images
 cd images
 tar xzf %{SOURCE2}
 cd ..
+%endif
 
 %build
 %{__autoconf}
@@ -138,8 +140,10 @@ install x11/cfclient gtk/gcfclient sound-src/cfsndserv $RPM_BUILD_ROOT%{_bindir}
 install x11/cfclient.man $RPM_BUILD_ROOT%{_mandir}/man1/cfclient.1
 install gtk/gcfclient.man $RPM_BUILD_ROOT%{_mandir}/man1/gcfclient.1
 install cfsounds/*.raw $RPM_BUILD_ROOT%{_datadir}/%{name}/sounds/
+%if %{?_without_images:0}%{?!_without_images:1}
 install images/bmaps.client images/crossfire.base images/crossfire.clsc \
 	$RPM_BUILD_ROOT%{_datadir}/%{name}
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -160,11 +164,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/cfsndserv
 %{_datadir}/%{name}/sounds
 
+%if %{?_without_images:0}%{?!_without_images:1}
 %files images
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/bmaps.client
 %{_datadir}/%{name}/crossfire.base
 %{_datadir}/%{name}/crossfire.clsc
+%endif
 
 %files gtk
 %defattr(644,root,root,755)
