@@ -65,13 +65,13 @@ Some sound files and the sound server for crossfire.
 Pliki d¼wiêkowe i serwer d¼wiêku dla Crossfire.
 
 %package gtk
-Summary:	GTK Crossfire client
-Summary(pl):	Klient Crossfire pod GTK
+Summary:	GTK+ Crossfire client
+Summary(pl):	Klient Crossfire pod GTK+
 Group:		Applications/Games
 Requires:	%{name}-common = %{version}
 
 %description gtk
-GTK client to crossfire.
+GTK+ client to crossfire.
 
 Crossfire is a multiplayer graphical arcade and adventure game made
 for the X-Window environment. There are also Windows and Java clients
@@ -85,7 +85,7 @@ sing items and battle monsters. They can choose to cooperate or
 compete in the same "world".
 
 %description gtk -l pl
-Klient Crossfire pod GTK.
+Klient Crossfire pod GTK+.
 
 Crossfire to graficzna gra przygodowa dla ¶rodowiska X-Window. S±
 tak¿e dostêpni klienci pod Windows i w Javie. £±czy cechy z kilku
