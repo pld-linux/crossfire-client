@@ -97,7 +97,10 @@ Group:		Applications/Games
 Requires:	%{name}-common = %{version}
 
 %description images
-Some images extracted from server for crossfire.
+Some images extracted from server for Crossfire.
+
+%description images -l pl
+Trochê obrazków wyci±gniêtych z serwera do Crossfire.
 
 %package common
 Summary:	Common Crossfire clients files
@@ -106,6 +109,9 @@ Group:		Applications/Games
 
 %description common
 This package includes files common to all Crossfire clients.
+
+%description common -l pl
+Ten pakiet zawiera pliki wspólne dla wszystkich klientów Crossfire.
 
 %prep
 %setup  -q -a1
