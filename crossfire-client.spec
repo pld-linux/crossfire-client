@@ -1,3 +1,5 @@
+%define		sndver	1.1.0
+%define		imgver	1.3.0
 Summary:	Crossfire client
 Summary(pl):	Klient Crossfire
 Name:		crossfire-client
@@ -6,13 +8,16 @@ Release:	1
 License:	GPL
 Group:		Applications/Games
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/crossfire/%{name}-%{version}.tar.gz
-Source1:	client-0.95.2-raw-sounds.tgz
+Source1:	ftp://ftp.sourceforge.net/pub/sourceforge/crossfire/%{name}-sounds-%{sndver}.tar.gz
+Source2:	ftp://ftp.sourceforge.net/pub/sourceforge/crossfire/%{name}-images-%{imgver}.tar.gz
+Patch0:		%{name}-sdl.patch
 URL:		http://crossfire.real-time.com/
 BuildRequires:	SDL-devel
 BuildRequires:	SDL_image-devel
 BuildRequires:	XFree86-devel
 BuildRequires:	gtk+-devel
 BuildRequires:	perl
+Requires:	%{name}-common = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -46,6 +51,7 @@ przeciwko sobie w tym samym "¶wiecie".
 Summary:	Crossfire sounds
 Summary(pl):	D¼wiêki do Crossfire
 Group:		Applications/Games
+Requires:	%{name}-common = %{version}
 
 %description sounds
 Some sound files and the sound server for crossfire.
@@ -57,6 +63,7 @@ Pliki d¼wiêkowe i serwer d¼wiêku dla Crossfire.
 Summary:	GTK Crossfire client
 Summary(pl):	Klient Crossfire pod GTK
 Group:		Applications/Games
+Requires:	%{name}-common = %{version}
 
 %description gtk
 GTK client to crossfire.
@@ -83,39 +90,75 @@ Dowolna liczba graczy mo¿e siê poruszaæ w swoich oknach, szukaj±c
 przedmiotów i walcz±c z potworami. Mog± graæ w kooperacji lub
 przeciwko sobie w tym samym "¶wiecie".
 
+%package images
+Summary:	Crossfire images
+Summary(pl):	Obrazki do Crossfire
+Group:		Applications/Games
+Requires:	%{name}-common = %{version}
+
+%description images
+Some images extracted from server for crossfire.
+
+%package common
+Summary:	Common Crossfire clients files
+Summary(pl):	Pliki wspólne wszystkich klientów Crossfire
+Group:		Applications/Games
+
+%description common
+This package includes files common to all Crossfire clients.
+
 %prep
-%setup -q -a1
+%setup  -q -a1
+%patch0 -p1
 mv -f sounds cfsounds
+install -d images
+cd images
+tar xzf %{SOURCE2}
+cd ..
 
 %build
+aclocal
+%{__autoconf}
 %configure \
 	--disable-alsa \
 	--enable-sdl \
-	--with-sound-dir=%{_datadir}/cfclient/sounds
+	--with-sound-dir=%{_datadir}/%{name}/sounds
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/cfclient/sounds}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/%{name}/sounds}
 install x11/cfclient gtk/gcfclient sound-src/cfsndserv $RPM_BUILD_ROOT%{_bindir}
 install x11/cfclient.man $RPM_BUILD_ROOT%{_mandir}/man1/cfclient.1
 install gtk/gcfclient.man $RPM_BUILD_ROOT%{_mandir}/man1/gcfclient.1
-install cfsounds/*.raw $RPM_BUILD_ROOT%{_datadir}/cfclient/sounds/
+install cfsounds/*.raw $RPM_BUILD_ROOT%{_datadir}/%{name}/sounds/
+install images/bmaps.client images/crossfire.base images/crossfire.clsc \
+	$RPM_BUILD_ROOT%{_datadir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES README
 %attr(755,root,root) %{_bindir}/cfclient
 %{_mandir}/man?/cf*
+
+%files common
+%defattr(644,root,root,755)
+%doc CHANGES README def_keys
+%dir %{_datadir}/%{name}
 
 %files sounds
 %defattr(644,root,root,755)
 %doc sounds/README* sounds.dist
 %attr(755,root,root) %{_bindir}/cfsndserv
-%{_datadir}/cfclient
+%{_datadir}/%{name}/sounds
+
+%files images
+%defattr(644,root,root,755)
+%{_datadir}/%{name}/bmaps.client
+%{_datadir}/%{name}/crossfire.base
+%{_datadir}/%{name}/crossfire.clsc
 
 %files gtk
 %defattr(644,root,root,755)
