@@ -155,7 +155,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files sounds
 %defattr(644,root,root,755)
-%doc sounds/README
+%doc cfsounds/README
 %attr(755,root,root) %{_bindir}/cfsndserv
 %{_datadir}/%{name}/sounds
 
