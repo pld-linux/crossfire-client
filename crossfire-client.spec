@@ -11,6 +11,8 @@ Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/crossfire/%{name}-%{version}.
 Source1:	ftp://ftp.sourceforge.net/pub/sourceforge/crossfire/%{name}-sounds-%{sndver}.tar.gz
 Source2:	ftp://ftp.sourceforge.net/pub/sourceforge/crossfire/%{name}-images-%{imgver}.tar.gz
 Patch0:		%{name}-sdl.patch
+Patch1:		%{name}-dmalloc.patch
+Patch2:		%{name}-errno.patch
 URL:		http://crossfire.real-time.com/
 BuildRequires:	SDL-devel
 BuildRequires:	SDL_image-devel
@@ -116,6 +118,8 @@ Ten pakiet zawiera pliki wspólne dla wszystkich klientów Crossfire.
 %prep
 %setup  -q -a1
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 mv -f sounds cfsounds
 %if %{?_without_images:0}%{?!_without_images:1}
 install -d images
@@ -128,6 +132,7 @@ cd ..
 %{__autoconf}
 %configure \
 	--disable-alsa \
+	--disable-dmalloc \
 	--with-sound-dir=%{_datadir}/%{name}/sounds
 %{__make}
 
