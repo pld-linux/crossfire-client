@@ -132,6 +132,7 @@ cd ..
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/%{name}/sounds}
+
 install x11/cfclient gtk/gcfclient sound-src/cfsndserv $RPM_BUILD_ROOT%{_bindir}
 install x11/cfclient.man $RPM_BUILD_ROOT%{_mandir}/man1/cfclient.1
 install gtk/gcfclient.man $RPM_BUILD_ROOT%{_mandir}/man1/gcfclient.1
@@ -154,7 +155,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files sounds
 %defattr(644,root,root,755)
-%doc sounds/README* sounds.dist
+%doc sounds/README
 %attr(755,root,root) %{_bindir}/cfsndserv
 %{_datadir}/%{name}/sounds
 
