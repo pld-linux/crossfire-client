@@ -1,12 +1,11 @@
 Summary:	Crossfire client
 Summary(pl):	Klient Crossfire
 Name:		crossfire-client
-Version:	1.0.0
+Version:	1.2.0
 Release:	1
 License:	GPL
 Group:		Applications/Games
-Source0:	ftp://ftp.scruz.net/users/mwedel/public/%{name}-%{version}.tar.gz
-#Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/crossfire/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/crossfire/%{name}-%{version}.tar.gz
 Source1:	client-0.95.2-raw-sounds.tgz
 URL:		http://crossfire.real-time.com/
 BuildRequires:	XFree86-devel
@@ -95,9 +94,9 @@ mv -f sounds cfsounds
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/cfclient/sounds}
-install cfclient gcfclient cfsndserv $RPM_BUILD_ROOT%{_bindir}
-install client.man $RPM_BUILD_ROOT%{_mandir}/man1/cfclient.1
-install client.man $RPM_BUILD_ROOT%{_mandir}/man1/gcfclient.1
+install x11/cfclient gtk/gcfclient sound-src/cfsndserv $RPM_BUILD_ROOT%{_bindir}
+install x11/cfclient.man $RPM_BUILD_ROOT%{_mandir}/man1/cfclient.1
+install gtk/gcfclient.man $RPM_BUILD_ROOT%{_mandir}/man1/gcfclient.1
 install cfsounds/*.raw $RPM_BUILD_ROOT%{_datadir}/cfclient/sounds/
 
 %clean
