@@ -1,4 +1,5 @@
-Summary:	Crossfire client.
+Summary:	Crossfire client
+Summary(pl):	Klient Crossfire
 Name:		crossfire-client
 Version:	1.0.0
 Release:	1
@@ -9,19 +10,19 @@ Group(pl):	Aplikacje/Gry
 Source0:	ftp://ftp.scruz.net/users/mwedel/public/%{name}-%{version}.tar.gz
 #Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/crossfire/%{name}-%{version}.tar.gz
 Source1:	client-0.95.2-raw-sounds.tgz
-URL:		http://crossfire.real-time.com
+URL:		http://crossfire.real-time.com/
 BuildRequires:	XFree86-devel
 BuildRequires:	gtk+-devel
-BuildRequires:  perl
+BuildRequires:	perl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix	/usr/X11R6
+%define		_prefix		/usr/X11R6
 
 %description 
 X11 client to crossfire.
 
 Crossfire is a multiplayer graphical arcade and adventure game made
-for the X-Windows environment. There are also Windows and Java clients
+for the X-Window environment. There are also Windows and Java clients
 available.
 
 It has certain flavours from other games, especially Gauntlet (TM) and
@@ -31,8 +32,20 @@ Any number of players can move around in their own window, finding and
 sing items and battle monsters. They can choose to cooperate or
 compete in the same "world".
 
+%description -l pl
+Klient Crossfire pod X11.
+
+Crossfire to graficzna gra przygodowa dla ¶rodowiska X-Window. S±
+tak¿e dostêpni klienci pod Windows i w Javie. £±czy cechy z kilku
+gier, g³ównie Gauntleta i Nethacka/Morii.
+
+Dowolna liczba graczy mo¿e siê poruszaæ w swoich oknach, szukaj±c
+przedmiotów i walcz±c z potworami. Mog± graæ w kooperacji lub
+przeciwko sobie w tym samym "¶wiecie".
+
 %package sounds
-Summary:	Crossfire sounds.
+Summary:	Crossfire sounds
+Summary(pl):	D¼wiêki do Crossfire
 Group:		Applications/Games
 Group(de):	Applikationen/Spiele
 Group(pl):	Aplikacje/Gry
@@ -40,8 +53,12 @@ Group(pl):	Aplikacje/Gry
 %description sounds
 Some sound files and the sound server for crossfire.
 
+%description sounds -l pl
+Pliki d¼wiêkowe i serwer d¼wiêku dla Crossfire.
+
 %package gtk
-Summary:	GTK Crossfire client.
+Summary:	GTK Crossfire client
+Summary(pl):	Klient Crossfire pod GTK
 Group:		Applications/Games
 Group(de):	Applikationen/Spiele
 Group(pl):	Aplikacje/Gry
@@ -50,7 +67,7 @@ Group(pl):	Aplikacje/Gry
 GTK client to crossfire.
 
 Crossfire is a multiplayer graphical arcade and adventure game made
-for the X-Windows environment. There are also Windows and Java clients
+for the X-Window environment. There are also Windows and Java clients
 available.
 
 It has certain flavours from other games, especially Gauntlet (TM) and
@@ -60,9 +77,20 @@ Any number of players can move around in their own window, finding and
 sing items and battle monsters. They can choose to cooperate or
 compete in the same "world".
 
+%description gtk -l pl
+Klient Crossfire pod GTK.
+
+Crossfire to graficzna gra przygodowa dla ¶rodowiska X-Window. S±
+tak¿e dostêpni klienci pod Windows i w Javie. £±czy cechy z kilku
+gier, g³ównie Gauntleta i Nethacka/Morii.
+
+Dowolna liczba graczy mo¿e siê poruszaæ w swoich oknach, szukaj±c
+przedmiotów i walcz±c z potworami. Mog± graæ w kooperacji lub
+przeciwko sobie w tym samym "¶wiecie".
+
 %prep
 %setup -q -a1
-mv sounds cfsounds
+mv -f sounds cfsounds
 
 %build
 %configure \
