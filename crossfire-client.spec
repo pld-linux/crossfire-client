@@ -23,7 +23,7 @@ BuildRequires:	SDL_image-devel
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	gtk+-devel
-BuildRequires:	perl
+BuildRequires:	perl-base
 Requires:	%{name}-common = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -137,7 +137,7 @@ cd ..
 	%{?debug:--enable-debug} \
 	--disable-alsa \
 	--with-sound-dir=%{_datadir}/%{name}/sounds
-perl -i -p -e 's/\#define HAVE_DMALLOC_H 1/\/\* \#undef HAVE_DMALLOC_H \*\//' common/config.h
+%{__perl} -i -p -e 's/\#define HAVE_DMALLOC_H 1/\/\* \#undef HAVE_DMALLOC_H \*\//' common/config.h
 %{__make}
 
 %install
