@@ -9,6 +9,7 @@ License:	GPL
 Group:		Applications/Games
 Source0:	http://dl.sourceforge.net/crossfire/%{name}-%{version}.tar.gz
 Source1:	http://dl.sourceforge.net/crossfire/%{name}-sounds-%{sndver}.tar.gz
+# Source1-md5:	1b33401d9d2af0d391fee7ad04282cfd
 Source2:	http://dl.sourceforge.net/crossfire/%{name}-images-%{imgver}.tar.gz
 Patch0:		%{name}-sdl.patch
 Patch1:		%{name}-dmalloc.patch
