@@ -1,10 +1,10 @@
 %define		sndver	1.4.0
-%define		imgver	1.4.0
+%define		imgver	1.5.0
 Summary:	Crossfire client
 Summary(pl):	Klient Crossfire
 Name:		crossfire-client
-Version:	1.4.0
-Release:	0.1
+Version:	1.5.0
+Release:	1
 License:	GPL
 Group:		Applications/Games
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/crossfire/%{name}-%{version}.tar.gz
