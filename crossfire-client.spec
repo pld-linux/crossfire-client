@@ -4,7 +4,7 @@ Summary:	Crossfire client
 Summary(pl):	Klient Crossfire
 Name:		crossfire-client
 Version:	1.7.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Games
 Source0:	http://dl.sourceforge.net/crossfire/%{name}-%{version}.tar.gz
@@ -14,6 +14,9 @@ Source1:	http://dl.sourceforge.net/crossfire/%{name}-sounds-%{sndver}.tar.gz
 Source2:	http://dl.sourceforge.net/crossfire/%{name}-images-%{imgver}.tar.gz
 # Source2-md5:	cbf4b4480bd6fd28cf0e71a06b288127
 Patch0:		%{name}-big_endian.patch
+Patch1:		%{name}-memleak.patch
+Patch2:		%{name}-sdl_free.patch
+Patch3:		%{name}-sdl_darkness.patch
 URL:		http://crossfire.real-time.com/
 BuildRequires:	SDL-devel
 BuildRequires:	SDL_image-devel
@@ -118,6 +121,9 @@ Ten pakiet zawiera pliki wspólne dla wszystkich klientów Crossfire.
 %prep
 %setup  -q -a1
 %patch0 -p1
+%patch1 -p0
+%patch2 -p0
+%patch3 -p0
 mv -f sounds cfsounds
 %if %{?_without_images:0}%{?!_without_images:1}
 install -d images
@@ -128,6 +134,7 @@ cd ..
 
 %build
 %configure \
+	%{?debug:--enable-debug} \
 	--disable-alsa \
 	--with-sound-dir=%{_datadir}/%{name}/sounds
 perl -i -p -e 's/\#define HAVE_DMALLOC_H 1/\/\* \#undef HAVE_DMALLOC_H \*\//' common/config.h
