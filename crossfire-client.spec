@@ -3,18 +3,16 @@
 Summary:	Crossfire client
 Summary(pl):	Klient Crossfire
 Name:		crossfire-client
-Version:	1.6.1
+Version:	1.7.0
 Release:	1
 License:	GPL
 Group:		Applications/Games
 Source0:	http://dl.sourceforge.net/crossfire/%{name}-%{version}.tar.gz
-# Source0-md5:	609a44e079803bc48c966b1766a02863
+# Source0-md5:	ef405f78d54be0bf22feeef6b4fc0d73
 Source1:	http://dl.sourceforge.net/crossfire/%{name}-sounds-%{sndver}.tar.gz
 # Source1-md5:	1b33401d9d2af0d391fee7ad04282cfd
 Source2:	http://dl.sourceforge.net/crossfire/%{name}-images-%{imgver}.tar.gz
 # Source2-md5:	63cbfb00ff8000f2567880b72c8162bd
-Patch0:		%{name}-sdl.patch
-Patch1:		%{name}-dmalloc.patch
 URL:		http://crossfire.real-time.com/
 BuildRequires:	SDL-devel
 BuildRequires:	SDL_image-devel
@@ -118,8 +116,6 @@ Ten pakiet zawiera pliki wspólne dla wszystkich klientów Crossfire.
 
 %prep
 %setup  -q -a1
-%patch0 -p1
-%patch1 -p1
 mv -f sounds cfsounds
 %if %{?_without_images:0}%{?!_without_images:1}
 install -d images
@@ -129,11 +125,10 @@ cd ..
 %endif
 
 %build
-%{__autoconf}
 %configure \
 	--disable-alsa \
-	--disable-dmalloc \
 	--with-sound-dir=%{_datadir}/%{name}/sounds
+perl -i -p -e 's/\#define HAVE_DMALLOC_H 1/\/\* \#undef HAVE_DMALLOC_H \*\//' common/config.h
 %{__make}
 
 %install
