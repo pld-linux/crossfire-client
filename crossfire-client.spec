@@ -15,6 +15,7 @@ URL:		http://crossfire.real-time.com/
 BuildRequires:	SDL-devel
 BuildRequires:	SDL_image-devel
 BuildRequires:	XFree86-devel
+BuildRequires:	autoconf
 BuildRequires:	gtk+-devel
 BuildRequires:	perl
 Requires:	%{name}-common = %{version}
