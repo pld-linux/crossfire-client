@@ -5,8 +5,6 @@ Version:	1.0.0
 Release:	1
 License:	GPL
 Group:		Applications/Games
-Group(de):	Applikationen/Spiele
-Group(pl):	Aplikacje/Gry
 Source0:	ftp://ftp.scruz.net/users/mwedel/public/%{name}-%{version}.tar.gz
 #Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/crossfire/%{name}-%{version}.tar.gz
 Source1:	client-0.95.2-raw-sounds.tgz
@@ -47,8 +45,6 @@ przeciwko sobie w tym samym "¶wiecie".
 Summary:	Crossfire sounds
 Summary(pl):	D¼wiêki do Crossfire
 Group:		Applications/Games
-Group(de):	Applikationen/Spiele
-Group(pl):	Aplikacje/Gry
 
 %description sounds
 Some sound files and the sound server for crossfire.
@@ -60,8 +56,6 @@ Pliki d¼wiêkowe i serwer d¼wiêku dla Crossfire.
 Summary:	GTK Crossfire client
 Summary(pl):	Klient Crossfire pod GTK
 Group:		Applications/Games
-Group(de):	Applikationen/Spiele
-Group(pl):	Aplikacje/Gry
 
 %description gtk
 GTK client to crossfire.
