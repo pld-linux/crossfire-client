@@ -7,9 +7,9 @@ Version:	1.5.0
 Release:	1
 License:	GPL
 Group:		Applications/Games
-Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/crossfire/%{name}-%{version}.tar.gz
-Source1:	ftp://ftp.sourceforge.net/pub/sourceforge/crossfire/%{name}-sounds-%{sndver}.tar.gz
-Source2:	ftp://ftp.sourceforge.net/pub/sourceforge/crossfire/%{name}-images-%{imgver}.tar.gz
+Source0:	http://dl.sourceforge.net/crossfire/%{name}-%{version}.tar.gz
+Source1:	http://dl.sourceforge.net/crossfire/%{name}-sounds-%{sndver}.tar.gz
+Source2:	http://dl.sourceforge.net/crossfire/%{name}-images-%{imgver}.tar.gz
 Patch0:		%{name}-sdl.patch
 Patch1:		%{name}-dmalloc.patch
 Patch2:		%{name}-errno.patch
@@ -22,7 +22,6 @@ BuildRequires:	gtk+-devel
 BuildRequires:	perl
 Requires:	%{name}-common = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
 
 %description
 X11 client to crossfire.
