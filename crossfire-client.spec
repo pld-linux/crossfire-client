@@ -1,5 +1,5 @@
 %define		sndver	1.4.0
-%define		imgver	1.5.0
+%define		imgver	1.7.0
 Summary:	Crossfire client
 Summary(pl):	Klient Crossfire
 Name:		crossfire-client
@@ -12,7 +12,7 @@ Source0:	http://dl.sourceforge.net/crossfire/%{name}-%{version}.tar.gz
 Source1:	http://dl.sourceforge.net/crossfire/%{name}-sounds-%{sndver}.tar.gz
 # Source1-md5:	1b33401d9d2af0d391fee7ad04282cfd
 Source2:	http://dl.sourceforge.net/crossfire/%{name}-images-%{imgver}.tar.gz
-# Source2-md5:	63cbfb00ff8000f2567880b72c8162bd
+# Source2-md5:	cbf4b4480bd6fd28cf0e71a06b288127
 URL:		http://crossfire.real-time.com/
 BuildRequires:	SDL-devel
 BuildRequires:	SDL_image-devel
