@@ -16,7 +16,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 
-%description 
+%description
 X11 client to crossfire.
 
 Crossfire is a multiplayer graphical arcade and adventure game made
