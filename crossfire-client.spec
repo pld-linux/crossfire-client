@@ -117,11 +117,9 @@ tar xzf %{SOURCE2}
 cd ..
 
 %build
-aclocal
 %{__autoconf}
 %configure \
 	--disable-alsa \
-	--enable-sdl \
 	--with-sound-dir=%{_datadir}/%{name}/sounds
 %{__make}
 
@@ -145,7 +143,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files common
 %defattr(644,root,root,755)
-%doc CHANGES README def_keys
+%doc CHANGES README
 %dir %{_datadir}/%{name}
 
 %files sounds
