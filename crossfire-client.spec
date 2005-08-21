@@ -1,22 +1,18 @@
 %define		sndver	1.4.0
-%define		imgver	1.7.0
+%define		imgver	1.7.1
 Summary:	Crossfire client
 Summary(pl):	Klient Crossfire
 Name:		crossfire-client
-Version:	1.7.0
-Release:	3
+Version:	1.8.0
+Release:	1
 License:	GPL
 Group:		Applications/Games
 Source0:	http://dl.sourceforge.net/crossfire/%{name}-%{version}.tar.gz
-# Source0-md5:	ef405f78d54be0bf22feeef6b4fc0d73
+# Source0-md5:	3198bb5ad0e85ca7d8dcdd812bdf4c2f
 Source1:	http://dl.sourceforge.net/crossfire/%{name}-sounds-%{sndver}.tar.gz
 # Source1-md5:	1b33401d9d2af0d391fee7ad04282cfd
 Source2:	http://dl.sourceforge.net/crossfire/%{name}-images-%{imgver}.tar.gz
-# Source2-md5:	cbf4b4480bd6fd28cf0e71a06b288127
-Patch0:		%{name}-big_endian.patch
-Patch1:		%{name}-memleak.patch
-Patch2:		%{name}-sdl_free.patch
-Patch3:		%{name}-sdl_darkness.patch
+# Source2-md5:	30dc5c22e864694a3d01309a073642f9
 URL:		http://crossfire.real-time.com/
 BuildRequires:	SDL-devel
 BuildRequires:	SDL_image-devel
@@ -95,6 +91,38 @@ Dowolna liczba graczy mo¿e siê poruszaæ w swoich oknach, szukaj±c
 przedmiotów i walcz±c z potworami. Mog± graæ w kooperacji lub
 przeciwko sobie w tym samym "¶wiecie".
 
+%package gtk2
+Summary:	GTK+2 Crossfire client
+Summary(pl):	Klient Crossfire pod GTK+2
+Group:		Applications/Games
+Requires:	%{name}-common = %{version}
+
+%description gtk2
+GTK+2 client to crossfire.
+
+Crossfire is a multiplayer graphical arcade and adventure game made
+for the X-Window environment. There are also Windows and Java clients
+available.
+
+It has certain flavours from other games, especially Gauntlet (TM) and
+Nethack/Moria.
+
+Any number of players can move around in their own window, finding and
+sing items and battle monsters. They can choose to cooperate or
+compete in the same "world".
+
+%description gtk2 -l pl
+Klient Crossfire pod GTK+2.
+
+Crossfire to graficzna gra przygodowa dla ¶rodowiska X-Window. S±
+tak¿e dostêpni klienci pod Windows i w Javie. £±czy cechy z kilku
+gier, g³ównie Gauntleta i Nethacka/Morii.
+
+Dowolna liczba graczy mo¿e siê poruszaæ w swoich oknach, szukaj±c
+przedmiotów i walcz±c z potworami. Mog± graæ w kooperacji lub
+przeciwko sobie w tym samym "¶wiecie".
+
+
 %package images
 Summary:	Crossfire images
 Summary(pl):	Obrazki do Crossfire
@@ -120,10 +148,6 @@ Ten pakiet zawiera pliki wspólne dla wszystkich klientów Crossfire.
 
 %prep
 %setup  -q -a1
-%patch0 -p1
-%patch1 -p0
-%patch2 -p0
-%patch3 -p0
 mv -f sounds cfsounds
 %if %{?_without_images:0}%{?!_without_images:1}
 install -d images
@@ -144,9 +168,8 @@ cd ..
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/%{name}/sounds}
 
-install x11/cfclient gtk/gcfclient sound-src/cfsndserv $RPM_BUILD_ROOT%{_bindir}
-install x11/cfclient.man $RPM_BUILD_ROOT%{_mandir}/man1/cfclient.1
-install gtk/gcfclient.man $RPM_BUILD_ROOT%{_mandir}/man1/gcfclient.1
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 install cfsounds/*.raw $RPM_BUILD_ROOT%{_datadir}/%{name}/sounds/
 %if %{?_without_images:0}%{?!_without_images:1}
 install images/bmaps.client images/crossfire.base images/crossfire.clsc \
@@ -163,13 +186,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files common
 %defattr(644,root,root,755)
-%doc CHANGES README
+%doc ChangeLog README
 %dir %{_datadir}/%{name}
 
 %files sounds
 %defattr(644,root,root,755)
 %doc cfsounds/README
-%attr(755,root,root) %{_bindir}/cfsndserv
+%attr(755,root,root) %{_bindir}/cfsndserv*
 %{_datadir}/%{name}/sounds
 
 %if %{?_without_images:0}%{?!_without_images:1}
@@ -182,5 +205,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files gtk
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/g*
-%{_mandir}/man?/g*
+%attr(755,root,root) %{_bindir}/gcfclient
+%{_mandir}/man?/gcfclient.*
+
+%files gtk2
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/gcfclient2
