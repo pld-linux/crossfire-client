@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	images	# don't build images package
+#
 %define		sndver	1.4.0
 %define		imgver	1.7.1
 Summary:	Crossfire client
@@ -20,7 +24,7 @@ BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	gtk+-devel
 BuildRequires:	perl-base
-Requires:	%{name}-common = %{version}
+Requires:	%{name}-common = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -52,7 +56,7 @@ przeciwko sobie w tym samym "¶wiecie".
 Summary:	Crossfire sounds
 Summary(pl):	D¼wiêki do Crossfire
 Group:		Applications/Games
-Requires:	%{name}-common = %{version}
+Requires:	%{name}-common = %{version}-%{release}
 
 %description sounds
 Some sound files and the sound server for crossfire.
@@ -64,7 +68,7 @@ Pliki d¼wiêkowe i serwer d¼wiêku dla Crossfire.
 Summary:	GTK+ Crossfire client
 Summary(pl):	Klient Crossfire pod GTK+
 Group:		Applications/Games
-Requires:	%{name}-common = %{version}
+Requires:	%{name}-common = %{version}-%{release}
 
 %description gtk
 GTK+ client to crossfire.
@@ -95,7 +99,7 @@ przeciwko sobie w tym samym "¶wiecie".
 Summary:	GTK+2 Crossfire client
 Summary(pl):	Klient Crossfire pod GTK+2
 Group:		Applications/Games
-Requires:	%{name}-common = %{version}
+Requires:	%{name}-common = %{version}-%{release}
 
 %description gtk2
 GTK+2 client to crossfire.
@@ -122,12 +126,11 @@ Dowolna liczba graczy mo¿e siê poruszaæ w swoich oknach, szukaj±c
 przedmiotów i walcz±c z potworami. Mog± graæ w kooperacji lub
 przeciwko sobie w tym samym "¶wiecie".
 
-
 %package images
 Summary:	Crossfire images
 Summary(pl):	Obrazki do Crossfire
 Group:		Applications/Games
-Requires:	%{name}-common = %{version}
+Requires:	%{name}-common = %{version}-%{release}
 
 %description images
 Some images extracted from server for Crossfire.
@@ -149,7 +152,7 @@ Ten pakiet zawiera pliki wspólne dla wszystkich klientów Crossfire.
 %prep
 %setup  -q -a1
 mv -f sounds cfsounds
-%if %{?_without_images:0}%{?!_without_images:1}
+%if %{with images}
 install -d images
 cd images
 tar xzf %{SOURCE2}
@@ -171,7 +174,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/%{name}/sounds
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 install cfsounds/*.raw $RPM_BUILD_ROOT%{_datadir}/%{name}/sounds/
-%if %{?_without_images:0}%{?!_without_images:1}
+%if %{with images}
 install images/bmaps.client images/crossfire.base images/crossfire.clsc \
 	$RPM_BUILD_ROOT%{_datadir}/%{name}
 %endif
@@ -195,7 +198,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/cfsndserv*
 %{_datadir}/%{name}/sounds
 
-%if %{?_without_images:0}%{?!_without_images:1}
+%if %{with images}
 %files images
 %defattr(644,root,root,755)
 %{_datadir}/%{name}/bmaps.client
