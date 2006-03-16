@@ -7,12 +7,12 @@
 Summary:	Crossfire client
 Summary(pl):	Klient Crossfire
 Name:		crossfire-client
-Version:	1.8.0
+Version:	1.9.0
 Release:	1
 License:	GPL
 Group:		Applications/Games
 Source0:	http://dl.sourceforge.net/crossfire/%{name}-%{version}.tar.gz
-# Source0-md5:	3198bb5ad0e85ca7d8dcdd812bdf4c2f
+# Source0-md5:	62a9ac007700d1d811fa097fe6790f7a
 Source1:	http://dl.sourceforge.net/crossfire/%{name}-sounds-%{sndver}.tar.gz
 # Source1-md5:	1b33401d9d2af0d391fee7ad04282cfd
 Source2:	http://dl.sourceforge.net/crossfire/%{name}-images-%{imgver}.tar.gz
@@ -20,9 +20,14 @@ Source2:	http://dl.sourceforge.net/crossfire/%{name}-images-%{imgver}.tar.gz
 URL:		http://crossfire.real-time.com/
 BuildRequires:	SDL-devel
 BuildRequires:	SDL_image-devel
-BuildRequires:	XFree86-devel
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXext-devel
+# next 2 probably unneeded
+BuildRequires:	xorg-lib-libSM-devel
+BuildRequires:	xorg-lib-libICE-devel
 BuildRequires:	autoconf
 BuildRequires:	gtk+-devel
+BuildRequires:	gtk+2-devel
 BuildRequires:	perl-base
 Requires:	%{name}-common = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
