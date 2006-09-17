@@ -2,22 +2,23 @@
 # Conditional build:
 %bcond_without	images	# don't build images package
 #
-%define		sndver	1.4.0
-%define		imgver	1.7.1
+%define		sndver	1.9.1
+%define		imgver	1.9.1
 Summary:	Crossfire client
 Summary(pl):	Klient Crossfire
 Name:		crossfire-client
-Version:	1.9.0
+Version:	1.9.1
 Release:	1
 License:	GPL
 Group:		Applications/Games
 Source0:	http://dl.sourceforge.net/crossfire/%{name}-%{version}.tar.gz
-# Source0-md5:	62a9ac007700d1d811fa097fe6790f7a
+# Source0-md5:	e7084c22c1f2074c95fe34331ac2ceae
 Source1:	http://dl.sourceforge.net/crossfire/%{name}-sounds-%{sndver}.tar.gz
-# Source1-md5:	1b33401d9d2af0d391fee7ad04282cfd
+# Source1-md5:	f996c3220d505098a4a226f92902b002
 Source2:	http://dl.sourceforge.net/crossfire/%{name}-images-%{imgver}.tar.gz
-# Source2-md5:	30dc5c22e864694a3d01309a073642f9
+# Source2-md5:	b2766880d5dffbf24ae98b8ca07cb89f
 URL:		http://crossfire.real-time.com/
+Patch0:		%{name}-gl.patch
 BuildRequires:	SDL-devel
 BuildRequires:	SDL_image-devel
 BuildRequires:	xorg-lib-libX11-devel
@@ -163,8 +164,13 @@ cd images
 tar xzf %{SOURCE2}
 cd ..
 %endif
+%patch0 -p1
 
 %build
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__automake}
 %configure \
 	%{?debug:--enable-debug} \
 	--disable-alsa \
