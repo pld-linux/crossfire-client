@@ -1,0 +1,11 @@
+--- crossfire-client-1.9.1/configure.in.wiget	2006-06-25 09:40:29.000000000 +0200
++++ crossfire-client-1.9.1/configure.in	2006-09-17 15:18:54.000000000 +0200
+@@ -42,7 +42,7 @@
+ AC_SUBST(PACKAGE_LIBS)
+ AC_SUBST(INTLLIBS)
+ 
+-AC_CHECK_LIB(glut, main, OPENGL_LIBS="-lglut")
++AC_CHECK_LIB(glut, main, OPENGL_LIBS="-lglut -lGL")
+ AC_SUBST(OPENGL_LIBS)
+ if eval "test x$OPENGL_LIBS != x"; then
+     AC_DEFINE(HAVE_OPENGL)
