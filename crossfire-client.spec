@@ -21,15 +21,17 @@ URL:		http://crossfire.real-time.com/
 Patch0:		%{name}-gl.patch
 BuildRequires:	SDL-devel
 BuildRequires:	SDL_image-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	gtk+-devel
+BuildRequires:	gtk+2-devel
+BuildRequires:	libtool
+BuildRequires:	perl-base
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 # next 2 probably unneeded
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-libICE-devel
-BuildRequires:	autoconf
-BuildRequires:	gtk+-devel
-BuildRequires:	gtk+2-devel
-BuildRequires:	perl-base
 Requires:	%{name}-common = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
