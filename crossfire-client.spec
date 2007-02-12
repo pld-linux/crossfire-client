@@ -5,7 +5,7 @@
 %define		sndver	1.9.1
 %define		imgver	1.9.1
 Summary:	Crossfire client
-Summary(pl.UTF-8):   Klient Crossfire
+Summary(pl.UTF-8):	Klient Crossfire
 Name:		crossfire-client
 Version:	1.9.1
 Release:	1
@@ -62,7 +62,7 @@ przeciwko sobie w tym samym "świecie".
 
 %package sounds
 Summary:	Crossfire sounds
-Summary(pl.UTF-8):   Dźwięki do Crossfire
+Summary(pl.UTF-8):	Dźwięki do Crossfire
 Group:		Applications/Games
 Requires:	%{name}-common = %{version}-%{release}
 
@@ -74,7 +74,7 @@ Pliki dźwiękowe i serwer dźwięku dla Crossfire.
 
 %package gtk
 Summary:	GTK+ Crossfire client
-Summary(pl.UTF-8):   Klient Crossfire pod GTK+
+Summary(pl.UTF-8):	Klient Crossfire pod GTK+
 Group:		Applications/Games
 Requires:	%{name}-common = %{version}-%{release}
 
@@ -105,7 +105,7 @@ przeciwko sobie w tym samym "świecie".
 
 %package gtk2
 Summary:	GTK+2 Crossfire client
-Summary(pl.UTF-8):   Klient Crossfire pod GTK+2
+Summary(pl.UTF-8):	Klient Crossfire pod GTK+2
 Group:		Applications/Games
 Requires:	%{name}-common = %{version}-%{release}
 
@@ -136,7 +136,7 @@ przeciwko sobie w tym samym "świecie".
 
 %package images
 Summary:	Crossfire images
-Summary(pl.UTF-8):   Obrazki do Crossfire
+Summary(pl.UTF-8):	Obrazki do Crossfire
 Group:		Applications/Games
 Requires:	%{name}-common = %{version}-%{release}
 
@@ -148,7 +148,7 @@ Trochę obrazków wyciągniętych z serwera do Crossfire.
 
 %package common
 Summary:	Common Crossfire clients files
-Summary(pl.UTF-8):   Pliki wspólne wszystkich klientów Crossfire
+Summary(pl.UTF-8):	Pliki wspólne wszystkich klientów Crossfire
 Group:		Applications/Games
 
 %description common
