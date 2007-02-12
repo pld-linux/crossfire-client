@@ -5,7 +5,7 @@
 %define		sndver	1.9.1
 %define		imgver	1.9.1
 Summary:	Crossfire client
-Summary(pl):	Klient Crossfire
+Summary(pl.UTF-8):   Klient Crossfire
 Name:		crossfire-client
 Version:	1.9.1
 Release:	1
@@ -49,32 +49,32 @@ Any number of players can move around in their own window, finding and
 sing items and battle monsters. They can choose to cooperate or
 compete in the same "world".
 
-%description -l pl
+%description -l pl.UTF-8
 Klient Crossfire pod X11.
 
-Crossfire to graficzna gra przygodowa dla ¶rodowiska X-Window. S±
-tak¿e dostêpni klienci pod Windows i w Javie. £±czy cechy z kilku
-gier, g³ównie Gauntleta i Nethacka/Morii.
+Crossfire to graficzna gra przygodowa dla Å›rodowiska X-Window. SÄ…
+takÅ¼e dostÄ™pni klienci pod Windows i w Javie. ÅÄ…czy cechy z kilku
+gier, gÅ‚Ã³wnie Gauntleta i Nethacka/Morii.
 
-Dowolna liczba graczy mo¿e siê poruszaæ w swoich oknach, szukaj±c
-przedmiotów i walcz±c z potworami. Mog± graæ w kooperacji lub
-przeciwko sobie w tym samym "¶wiecie".
+Dowolna liczba graczy moÅ¼e siÄ™ poruszaÄ‡ w swoich oknach, szukajÄ…c
+przedmiotÃ³w i walczÄ…c z potworami. MogÄ… graÄ‡ w kooperacji lub
+przeciwko sobie w tym samym "Å›wiecie".
 
 %package sounds
 Summary:	Crossfire sounds
-Summary(pl):	D¼wiêki do Crossfire
+Summary(pl.UTF-8):   DÅºwiÄ™ki do Crossfire
 Group:		Applications/Games
 Requires:	%{name}-common = %{version}-%{release}
 
 %description sounds
 Some sound files and the sound server for crossfire.
 
-%description sounds -l pl
-Pliki d¼wiêkowe i serwer d¼wiêku dla Crossfire.
+%description sounds -l pl.UTF-8
+Pliki dÅºwiÄ™kowe i serwer dÅºwiÄ™ku dla Crossfire.
 
 %package gtk
 Summary:	GTK+ Crossfire client
-Summary(pl):	Klient Crossfire pod GTK+
+Summary(pl.UTF-8):   Klient Crossfire pod GTK+
 Group:		Applications/Games
 Requires:	%{name}-common = %{version}-%{release}
 
@@ -92,20 +92,20 @@ Any number of players can move around in their own window, finding and
 sing items and battle monsters. They can choose to cooperate or
 compete in the same "world".
 
-%description gtk -l pl
+%description gtk -l pl.UTF-8
 Klient Crossfire pod GTK+.
 
-Crossfire to graficzna gra przygodowa dla ¶rodowiska X-Window. S±
-tak¿e dostêpni klienci pod Windows i w Javie. £±czy cechy z kilku
-gier, g³ównie Gauntleta i Nethacka/Morii.
+Crossfire to graficzna gra przygodowa dla Å›rodowiska X-Window. SÄ…
+takÅ¼e dostÄ™pni klienci pod Windows i w Javie. ÅÄ…czy cechy z kilku
+gier, gÅ‚Ã³wnie Gauntleta i Nethacka/Morii.
 
-Dowolna liczba graczy mo¿e siê poruszaæ w swoich oknach, szukaj±c
-przedmiotów i walcz±c z potworami. Mog± graæ w kooperacji lub
-przeciwko sobie w tym samym "¶wiecie".
+Dowolna liczba graczy moÅ¼e siÄ™ poruszaÄ‡ w swoich oknach, szukajÄ…c
+przedmiotÃ³w i walczÄ…c z potworami. MogÄ… graÄ‡ w kooperacji lub
+przeciwko sobie w tym samym "Å›wiecie".
 
 %package gtk2
 Summary:	GTK+2 Crossfire client
-Summary(pl):	Klient Crossfire pod GTK+2
+Summary(pl.UTF-8):   Klient Crossfire pod GTK+2
 Group:		Applications/Games
 Requires:	%{name}-common = %{version}-%{release}
 
@@ -123,39 +123,39 @@ Any number of players can move around in their own window, finding and
 sing items and battle monsters. They can choose to cooperate or
 compete in the same "world".
 
-%description gtk2 -l pl
+%description gtk2 -l pl.UTF-8
 Klient Crossfire pod GTK+2.
 
-Crossfire to graficzna gra przygodowa dla ¶rodowiska X-Window. S±
-tak¿e dostêpni klienci pod Windows i w Javie. £±czy cechy z kilku
-gier, g³ównie Gauntleta i Nethacka/Morii.
+Crossfire to graficzna gra przygodowa dla Å›rodowiska X-Window. SÄ…
+takÅ¼e dostÄ™pni klienci pod Windows i w Javie. ÅÄ…czy cechy z kilku
+gier, gÅ‚Ã³wnie Gauntleta i Nethacka/Morii.
 
-Dowolna liczba graczy mo¿e siê poruszaæ w swoich oknach, szukaj±c
-przedmiotów i walcz±c z potworami. Mog± graæ w kooperacji lub
-przeciwko sobie w tym samym "¶wiecie".
+Dowolna liczba graczy moÅ¼e siÄ™ poruszaÄ‡ w swoich oknach, szukajÄ…c
+przedmiotÃ³w i walczÄ…c z potworami. MogÄ… graÄ‡ w kooperacji lub
+przeciwko sobie w tym samym "Å›wiecie".
 
 %package images
 Summary:	Crossfire images
-Summary(pl):	Obrazki do Crossfire
+Summary(pl.UTF-8):   Obrazki do Crossfire
 Group:		Applications/Games
 Requires:	%{name}-common = %{version}-%{release}
 
 %description images
 Some images extracted from server for Crossfire.
 
-%description images -l pl
-Trochê obrazków wyci±gniêtych z serwera do Crossfire.
+%description images -l pl.UTF-8
+TrochÄ™ obrazkÃ³w wyciÄ…gniÄ™tych z serwera do Crossfire.
 
 %package common
 Summary:	Common Crossfire clients files
-Summary(pl):	Pliki wspólne wszystkich klientów Crossfire
+Summary(pl.UTF-8):   Pliki wspÃ³lne wszystkich klientÃ³w Crossfire
 Group:		Applications/Games
 
 %description common
 This package includes files common to all Crossfire clients.
 
-%description common -l pl
-Ten pakiet zawiera pliki wspólne dla wszystkich klientów Crossfire.
+%description common -l pl.UTF-8
+Ten pakiet zawiera pliki wspÃ³lne dla wszystkich klientÃ³w Crossfire.
 
 %prep
 %setup  -q -a1
