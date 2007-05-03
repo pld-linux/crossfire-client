@@ -2,23 +2,23 @@
 # Conditional build:
 %bcond_without	images	# don't build images package
 #
-%define		sndver	1.9.1
-%define		imgver	1.9.1
+%define		sndver	1.10.0
+%define		imgver	1.10.0
 Summary:	Crossfire client
 Summary(pl.UTF-8):	Klient Crossfire
 Name:		crossfire-client
-Version:	1.9.1
+Version:	1.10.0
 Release:	1
 License:	GPL
 Group:		Applications/Games
 Source0:	http://dl.sourceforge.net/crossfire/%{name}-%{version}.tar.gz
-# Source0-md5:	e7084c22c1f2074c95fe34331ac2ceae
+# Source0-md5:	883296ef199cbf47334d52d8b5d61886
 Source1:	http://dl.sourceforge.net/crossfire/%{name}-sounds-%{sndver}.tar.gz
-# Source1-md5:	f996c3220d505098a4a226f92902b002
+# Source1-md5:	b990e5e3bf321211312cba48fb885142
 Source2:	http://dl.sourceforge.net/crossfire/%{name}-images-%{imgver}.tar.gz
-# Source2-md5:	b2766880d5dffbf24ae98b8ca07cb89f
+# Source2-md5:	496ccabc31e773349ccc679812f66f7b
 URL:		http://crossfire.real-time.com/
-Patch0:		%{name}-gl.patch
+BuildRequires:	OpenGL-glut-devel
 BuildRequires:	SDL-devel
 BuildRequires:	SDL_image-devel
 BuildRequires:	autoconf
@@ -166,7 +166,6 @@ cd images
 tar xzf %{SOURCE2}
 cd ..
 %endif
-%patch0 -p1
 
 %build
 %{__libtoolize}
