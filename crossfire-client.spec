@@ -27,11 +27,10 @@ BuildRequires:	gtk+-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	libtool
 BuildRequires:	perl-base
+BuildRequires:	pkgconfig
+BuildRequires:	xorg-lib-libICE-devel
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
-# next 2 probably unneeded
-BuildRequires:	xorg-lib-libSM-devel
-BuildRequires:	xorg-lib-libICE-devel
 Requires:	%{name}-common = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
