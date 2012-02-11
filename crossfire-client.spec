@@ -8,7 +8,7 @@ Summary:	Crossfire client
 Summary(pl.UTF-8):	Klient Crossfire
 Name:		crossfire-client
 Version:	1.10.0
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/Games
 Source0:	http://dl.sourceforge.net/crossfire/%{name}-%{version}.tar.gz
@@ -17,6 +17,7 @@ Source1:	http://dl.sourceforge.net/crossfire/%{name}-sounds-%{sndver}.tar.gz
 # Source1-md5:	b990e5e3bf321211312cba48fb885142
 Source2:	http://dl.sourceforge.net/crossfire/%{name}-images-%{imgver}.tar.gz
 # Source2-md5:	496ccabc31e773349ccc679812f66f7b
+Patch0:		%{name}-libpng15.patch
 URL:		http://crossfire.real-time.com/
 BuildRequires:	OpenGL-glut-devel
 BuildRequires:	SDL-devel
@@ -158,6 +159,7 @@ Ten pakiet zawiera pliki wspólne dla wszystkich klientów Crossfire.
 
 %prep
 %setup  -q -a1
+%patch0 -p1
 mv -f sounds cfsounds
 %if %{with images}
 install -d images
