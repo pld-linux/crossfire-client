@@ -1,42 +1,11 @@
---- crossfire-client-1.10.0/gtk/png.c~	2007-03-05 06:51:47.000000000 +0100
-+++ crossfire-client-1.10.0/gtk/png.c	2012-02-11 12:08:56.328971164 +0100
-@@ -86,7 +86,7 @@
- 	png_destroy_read_struct (&png_ptr, NULL, NULL);
- 	return NULL;
+--- crossfire-client-1.60.0/gtk-v2/src/png.c.wiget	2011-01-28 07:17:57.000000000 +0100
++++ crossfire-client-1.60.0/gtk-v2/src/png.c	2012-02-18 17:52:15.410954778 +0100
+@@ -571,7 +571,7 @@ int png_to_gdkpixmap(GdkWindow *window,
+         png_destroy_read_struct (&png_ptr, NULL, NULL);
+         return PNGX_OUTOFMEM;
      }
 -    if (setjmp (png_ptr->jmpbuf)) {
 +    if (setjmp (png_jmpbuf(png_ptr))) {
- 	png_destroy_read_struct (&png_ptr, &info_ptr, NULL);
- 	return NULL;
-     }
---- crossfire-client-1.10.0/x11/png.c~	2007-03-05 06:51:49.000000000 +0100
-+++ crossfire-client-1.10.0/x11/png.c	2012-02-11 12:08:14.612095092 +0100
-@@ -88,7 +88,7 @@
- 	png_destroy_read_struct (&png_ptr, NULL, NULL);
- 	return NULL;
-     }
--    if (setjmp (png_ptr->jmpbuf)) {
-+    if (setjmp (png_jmpbuf(png_ptr))) {
- 	png_destroy_read_struct (&png_ptr, &info_ptr, NULL);
- 	return NULL;
-     }
-@@ -600,7 +600,7 @@
- 	png_destroy_read_struct (&png_ptr, NULL, NULL);
- 	return PNGX_OUTOFMEM;
-     }
--    if (setjmp (png_ptr->jmpbuf)) {
-+    if (setjmp (png_jmpbuf(png_ptr))) {
- 	png_destroy_read_struct (&png_ptr, &info_ptr, NULL);
- 	return PNGX_DATA;
-     }
---- crossfire-client-1.10.0/gtk-v2/src/png.c~	2007-03-05 06:51:49.000000000 +0100
-+++ crossfire-client-1.10.0/gtk-v2/src/png.c	2012-02-11 12:09:43.339207061 +0100
-@@ -532,7 +532,7 @@
- 	png_destroy_read_struct (&png_ptr, NULL, NULL);
- 	return PNGX_OUTOFMEM;
-     }
--    if (setjmp (png_ptr->jmpbuf)) {
-+    if (setjmp (png_jmpbuf(png_ptr))) {
- 	png_destroy_read_struct (&png_ptr, &info_ptr,NULL);
- 	return PNGX_DATA;
+         png_destroy_read_struct (&png_ptr, &info_ptr,NULL);
+         return PNGX_DATA;
      }
