@@ -11,11 +11,11 @@ Version:	1.60.0
 Release:	1
 License:	GPL
 Group:		Applications/Games
-Source0:	http://dl.sourceforge.net/crossfire/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/crossfire/%{name}-%{version}.tar.gz
 # Source0-md5:	7b22bf93ebb581a5bfd5682df107af76
-Source1:	http://dl.sourceforge.net/crossfire/%{name}-sounds-%{sndver}.tar.gz
+Source1:	http://downloads.sourceforge.net/crossfire/%{name}-sounds-%{sndver}.tar.gz
 # Source1-md5:	1985fc187a7624f48a4c4e9d609208ba
-Source2:	http://dl.sourceforge.net/crossfire/%{name}-images-%{imgver}.tar.gz
+Source2:	http://downloads.sourceforge.net/crossfire/%{name}-images-%{imgver}.tar.gz
 # Source2-md5:	e68b6f32c4d15e65af8535a346efe51a
 Patch0:		%{name}-libpng15.patch
 URL:		http://crossfire.real-time.com/
@@ -32,11 +32,11 @@ BuildRequires:	pkgconfig
 BuildRequires:	xorg-lib-libICE-devel
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
-Suggests:	crossfire-client-sounds
 Suggests:	crossfire-client-images
+Suggests:	crossfire-client-sounds
+Obsoletes:	crossfire-client-common
 Obsoletes:	crossfire-client-gtk
 Obsoletes:	crossfire-client-gtk2
-Obsoletes:	crossfire-client-common
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
