@@ -8,7 +8,7 @@ Summary:	Crossfire client
 Summary(pl.UTF-8):	Klient Crossfire
 Name:		crossfire-client
 Version:	1.60.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Games
 Source0:	http://downloads.sourceforge.net/crossfire/%{name}-%{version}.tar.gz
