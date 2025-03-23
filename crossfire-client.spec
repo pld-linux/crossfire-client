@@ -34,9 +34,9 @@ BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 Suggests:	crossfire-client-images
 Suggests:	crossfire-client-sounds
-Obsoletes:	crossfire-client-common
-Obsoletes:	crossfire-client-gtk
-Obsoletes:	crossfire-client-gtk2
+Obsoletes:	crossfire-client-common < 1.60
+Obsoletes:	crossfire-client-gtk < 1.60
+Obsoletes:	crossfire-client-gtk2 < 1.60
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
