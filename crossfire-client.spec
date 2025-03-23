@@ -1,32 +1,37 @@
 #
 # Conditional build:
-%bcond_without	images	# don't build images package
+%bcond_without	images	# images package
 #
-%define		sndver	1.60.0
-%define		imgver	1.60.0
+%define		sndver	1.70.0
+%define		imgver	1.70.0
 Summary:	Crossfire client
 Summary(pl.UTF-8):	Klient Crossfire
 Name:		crossfire-client
-Version:	1.60.0
-Release:	3
-License:	GPL
+Version:	1.70.0
+Release:	1
+License:	GPL v2+
 Group:		Applications/Games
-Source0:	http://downloads.sourceforge.net/crossfire/%{name}-%{version}.tar.gz
-# Source0-md5:	7b22bf93ebb581a5bfd5682df107af76
-Source1:	http://downloads.sourceforge.net/crossfire/%{name}-sounds-%{sndver}.tar.gz
-# Source1-md5:	1985fc187a7624f48a4c4e9d609208ba
-Source2:	http://downloads.sourceforge.net/crossfire/%{name}-images-%{imgver}.tar.gz
-# Source2-md5:	e68b6f32c4d15e65af8535a346efe51a
-Patch0:		%{name}-libpng15.patch
+Source0:	https://downloads.sourceforge.net/crossfire/%{name}-%{version}.tar.gz
+# Source0-md5:	657a773fc2223629474c7ec16635d2ef
+Source1:	https://downloads.sourceforge.net/crossfire/%{name}-sounds-%{sndver}.tar.gz
+# Source1-md5:	48133bb0d220d3b7dee60fa218819b08
+Source2:	https://downloads.sourceforge.net/crossfire/%{name}-images-%{imgver}.tar.gz
+# Source2-md5:	5f5dfa091ae1e3a3660c935f36bd8022
+Patch0:		%{name}-lua.patch
+Patch1:		%{name}-link.patch
 URL:		http://crossfire.real-time.com/
+BuildRequires:	OpenGL-GLU-devel
+BuildRequires:	OpenGL-devel
 BuildRequires:	OpenGL-glut-devel
 BuildRequires:	SDL-devel
 BuildRequires:	SDL_image-devel
-BuildRequires:	autoconf
+BuildRequires:	SDL_mixer-devel
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
-BuildRequires:	gtk+-devel
-BuildRequires:	gtk+2-devel
+BuildRequires:	gtk+2-devel >= 1:2.0.0
+BuildRequires:	libglade2-devel >= 2.0
 BuildRequires:	libtool
+BuildRequires:	lua-devel >= 5.1.0
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
 BuildRequires:	xorg-lib-libICE-devel
@@ -87,8 +92,9 @@ Some images extracted from server for Crossfire.
 Trochę obrazków wyciągniętych z serwera do Crossfire.
 
 %prep
-%setup  -q -a1
+%setup -q -a1
 %patch -P0 -p1
+%patch -P1 -p1
 %{__mv} sounds cfsounds
 %if %{with images}
 install -d images
@@ -101,10 +107,12 @@ cd ..
 %{__libtoolize}
 %{__aclocal} -I macros
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure \
 	%{?debug:--enable-debug} \
 	--disable-alsa \
+	--enable-sdl_mixer \
 	--with-sound-dir=%{_datadir}/%{name}/sounds
 %{__perl} -i -p -e 's/\#define HAVE_DMALLOC_H 1/\/\* \#undef HAVE_DMALLOC_H \*\//' common/config.h
 %{__make}
@@ -115,9 +123,10 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/%{name}/sounds
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-install cfsounds/*.raw $RPM_BUILD_ROOT%{_datadir}/%{name}/sounds/
+
+cp -p cfsounds/*.raw $RPM_BUILD_ROOT%{_datadir}/%{name}/sounds/
 %if %{with images}
-install images/bmaps.client images/crossfire.base images/crossfire.clsc \
+cp -p images/bmaps.client images/crossfire.base images/crossfire.clsc \
 	$RPM_BUILD_ROOT%{_datadir}/%{name}
 %endif
 
@@ -126,9 +135,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog README
+%doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/crossfire-client-gtk2
-%{_mandir}/man?/crossfire-client-gtk2.*
+%{_mandir}/man6/crossfire-client-gtk2.6*
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/glade-gtk2
 %{_datadir}/%{name}/themes

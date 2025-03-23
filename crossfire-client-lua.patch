@@ -1,0 +1,28 @@
+--- crossfire-client-1.70.0/configure.ac.orig	2012-03-18 07:18:25.000000000 +0100
++++ crossfire-client-1.70.0/configure.ac	2025-03-23 18:08:13.057667853 +0100
+@@ -195,12 +195,9 @@ AC_CHECK_LIB(m, sqrt)
+ 
+ AC_SEARCH_LIBS(pthread_create, [pthread, pthreadgc, pthreadgc1, pthreadgc2], [AC_DEFINE(HAVE_LIBPTHREAD, 1, [Define to 1 if you have the 'pthread' library.])])
+ 
+-PKG_CHECK_MODULES(LUA, lua >= 5.0.0, [lua_scripting=yes], [lua_scripting=no])
+-if eval "test x$lua_scripting = xyes" ; then
+-    LUA_LIBS=`$PKG_CONFIG --libs lua`
+-fi
++PKG_CHECK_MODULES(LUA, lua5.0 >= 5.0.0, [lua_scripting=yes], [lua_scripting=no])
+ 
+-PKG_CHECK_MODULES(LUA, lua >= 5.1.0, [HAVE_LUA_5_1=yes], [HAVE_LUA_5_1=no])
++PKG_CHECK_MODULES(LUA, lua5.1 >= 5.1.0, [HAVE_LUA_5_1=yes], [HAVE_LUA_5_1=no])
+ if eval "test x$HAVE_LUA_5_1 = xyes" ; then
+     AC_DEFINE(HAVE_LUA_5_1, 1, [Define to use Lua 5.1])
+ fi
+--- crossfire-client-1.70.0/common/Makefile.am.orig	2012-03-18 07:17:45.000000000 +0100
++++ crossfire-client-1.70.0/common/Makefile.am	2025-03-23 18:08:27.534256093 +0100
+@@ -64,7 +64,7 @@ EXTRA_DIST = \
+ 	item-types \
+ 	items.pl
+ 
+-AM_CFLAGS = $(PTHREAD_CFLAGS)
++AM_CFLAGS = $(PTHREAD_CFLAGS) $(LUA_CFLAGS)
+ 
+ proto:
+ 	cproto -DCPROTO -DCFCLIENT $(DEFAULT_INCLUDES) $(AM_CFLAGS) \
