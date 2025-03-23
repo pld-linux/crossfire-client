@@ -88,8 +88,8 @@ Trochę obrazków wyciągniętych z serwera do Crossfire.
 
 %prep
 %setup  -q -a1
-%patch0 -p1
-mv -f sounds cfsounds
+%patch -P0 -p1
+%{__mv} sounds cfsounds
 %if %{with images}
 install -d images
 cd images
