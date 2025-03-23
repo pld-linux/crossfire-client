@@ -2,22 +2,21 @@
 # Conditional build:
 %bcond_without	images	# images package
 #
-%define		sndver	1.70.0
-%define		imgver	1.70.0
+%define		sndver	1.71.0
+%define		imgver	1.71.0
 Summary:	Crossfire client
 Summary(pl.UTF-8):	Klient Crossfire
 Name:		crossfire-client
-Version:	1.70.0
+Version:	1.71.0
 Release:	1
 License:	GPL v2+
 Group:		Applications/Games
-Source0:	https://downloads.sourceforge.net/crossfire/%{name}-%{version}.tar.gz
-# Source0-md5:	657a773fc2223629474c7ec16635d2ef
-Source1:	https://downloads.sourceforge.net/crossfire/%{name}-sounds-%{sndver}.tar.gz
-# Source1-md5:	48133bb0d220d3b7dee60fa218819b08
-Source2:	https://downloads.sourceforge.net/crossfire/%{name}-images-%{imgver}.tar.gz
-# Source2-md5:	5f5dfa091ae1e3a3660c935f36bd8022
-Patch0:		%{name}-lua.patch
+Source0:	https://downloads.sourceforge.net/crossfire/%{name}-%{version}.tar.bz2
+# Source0-md5:	a32b9a3cb42f65820c5a9193dcfa56d5
+Source1:	https://downloads.sourceforge.net/crossfire/%{name}-sounds-%{sndver}.tar.bz2
+# Source1-md5:	3c9b8045231d4f861986b76b1bfde328
+Source2:	https://downloads.sourceforge.net/crossfire/%{name}-images-%{imgver}.tar.bz2
+# Source2-md5:	91e9ad93276be1565d190fccdcfb810d
 Patch1:		%{name}-link.patch
 URL:		http://crossfire.real-time.com/
 BuildRequires:	OpenGL-GLU-devel
@@ -93,13 +92,12 @@ Trochę obrazków wyciągniętych z serwera do Crossfire.
 
 %prep
 %setup -q -a1
-%patch -P0 -p1
 %patch -P1 -p1
 %{__mv} sounds cfsounds
 %if %{with images}
 install -d images
 cd images
-tar xzf %{SOURCE2}
+tar xf %{SOURCE2}
 cd ..
 %endif
 
@@ -124,7 +122,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_datadir}/%{name}/sounds
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-cp -p cfsounds/*.raw $RPM_BUILD_ROOT%{_datadir}/%{name}/sounds/
+cp -p cfsounds/*.wav cfsounds/sounds.conf $RPM_BUILD_ROOT%{_datadir}/%{name}/sounds/
 %if %{with images}
 cp -p images/bmaps.client images/crossfire.base images/crossfire.clsc \
 	$RPM_BUILD_ROOT%{_datadir}/%{name}
@@ -139,12 +137,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/crossfire-client-gtk2
 %{_mandir}/man6/crossfire-client-gtk2.6*
 %dir %{_datadir}/%{name}
-%{_datadir}/%{name}/glade-gtk2
 %{_datadir}/%{name}/themes
+%{_datadir}/%{name}/ui
 
 %files sounds
 %defattr(644,root,root,755)
-%doc cfsounds/README
+%doc cfsounds/AUTHORS
 %attr(755,root,root) %{_bindir}/cfsndserv*
 %{_datadir}/%{name}/sounds
 

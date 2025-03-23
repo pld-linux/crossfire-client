@@ -1,7 +1,7 @@
---- crossfire-client-1.70.0/sound-src/Makefile.am.orig	2025-03-23 19:09:10.871185111 +0100
-+++ crossfire-client-1.70.0/sound-src/Makefile.am	2025-03-23 19:09:13.944501794 +0100
-@@ -61,6 +61,7 @@ cfsndserv_SOURCES = \
- 	cfsndserv.c
+--- crossfire-client-1.71.0/sound-src/Makefile.am.orig	2025-03-23 21:37:41.089580984 +0100
++++ crossfire-client-1.71.0/sound-src/Makefile.am	2025-03-23 21:38:08.319433467 +0100
+@@ -33,6 +33,7 @@ cfsndserv_SOURCES = \
+ 	sndproto.h
  
  cfsndserv_LDADD = \
 +	$(SDL_LIBS) \
