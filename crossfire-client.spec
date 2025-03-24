@@ -7,26 +7,21 @@
 Summary:	Crossfire client
 Summary(pl.UTF-8):	Klient Crossfire
 Name:		crossfire-client
-Version:	1.72.0
+Version:	1.75.3
 Release:	1
 License:	GPL v2+
 Group:		Applications/Games
-Source0:	https://downloads.sourceforge.net/crossfire/%{name}-%{version}.tar.bz2
-# Source0-md5:	d156f34330caa0b42126632cb04806f9
-Source1:	https://downloads.sourceforge.net/crossfire/crossfire-sounds-%{sndver}.tar.bz2
-# Source1-md5:	3125f43dd6ccb7a0ff7a4e24acb973b8
+Source0:	https://downloads.sourceforge.net/crossfire/%{name}-%{version}.tar.gz
+# Source0-md5:	39f8efc273aaee00533b4cb7c5b00df6
 Source2:	https://downloads.sourceforge.net/crossfire/%{name}-images-%{imgver}.tar.bz2
 # Source2-md5:	91e9ad93276be1565d190fccdcfb810d
-Patch0:		%{name}-extern.patch
 URL:		http://crossfire.real-time.com/
-BuildRequires:	OpenGL-GLU-devel
-BuildRequires:	OpenGL-devel
-BuildRequires:	OpenGL-glut-devel
-BuildRequires:	SDL-devel
-BuildRequires:	SDL_image-devel
-BuildRequires:	SDL_mixer-devel
-BuildRequires:	cmake >= 2.8
+BuildRequires:	SDL2-devel >= 2
+BuildRequires:	SDL2_mixer-devel >= 2
+BuildRequires:	cmake >= 3.1
 BuildRequires:	curl-devel
+BuildRequires:	gdk-pixbuf2-devel >= 2.0
+BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	gtk+2-devel >= 1:2.0.0
 BuildRequires:	libpng-devel
 BuildRequires:	lua-devel >= 5.1.0
@@ -36,8 +31,8 @@ BuildRequires:	vala
 BuildRequires:	xorg-lib-libICE-devel
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
-Suggests:	crossfire-client-images
-Suggests:	crossfire-client-sounds
+Suggests:	crossfire-client-images = %{version}-%{release}
+Suggests:	crossfire-client-sounds = %{version}-%{release}
 Obsoletes:	crossfire-client-common < 1.60
 Obsoletes:	crossfire-client-gtk < 1.60
 Obsoletes:	crossfire-client-gtk2 < 1.60
@@ -72,6 +67,7 @@ przeciwko sobie w tym samym "świecie".
 Summary:	Crossfire sounds
 Summary(pl.UTF-8):	Dźwięki do Crossfire
 Group:		Applications/Games
+Requires:	%{name} = %{version}-%{release}
 
 %description sounds
 Some sound files and the sound server for crossfire.
@@ -83,6 +79,7 @@ Pliki dźwiękowe i serwer dźwięku dla Crossfire.
 Summary:	Crossfire images
 Summary(pl.UTF-8):	Obrazki do Crossfire
 Group:		Applications/Games
+Requires:	%{name} = %{version}-%{release}
 
 %description images
 Some images extracted from server for Crossfire.
@@ -91,9 +88,8 @@ Some images extracted from server for Crossfire.
 Trochę obrazków wyciągniętych z serwera do Crossfire.
 
 %prep
-%setup -q -a1
-%patch -P0 -p1
-%{__mv} crossfire-sounds-%{sndver} cfsounds
+%setup -q
+
 %if %{with images}
 install -d images
 cd images
@@ -111,12 +107,10 @@ cd build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}/%{name}/sounds
 
 %{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-cp -p cfsounds/*.{ogg,wav} cfsounds/sounds.conf $RPM_BUILD_ROOT%{_datadir}/%{name}/sounds/
 %if %{with images}
 cp -p images/bmaps.client images/crossfire.base images/crossfire.clsc \
 	$RPM_BUILD_ROOT%{_datadir}/%{name}
@@ -137,8 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files sounds
 %defattr(644,root,root,755)
-%doc cfsounds/COPYING
-%attr(755,root,root) %{_bindir}/cfsndserv*
+%doc sounds/COPYING
 %{_datadir}/%{name}/sounds
 
 %if %{with images}
