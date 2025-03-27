@@ -8,7 +8,7 @@ Summary:	Crossfire client
 Summary(pl.UTF-8):	Klient Crossfire
 Name:		crossfire-client
 Version:	1.75.3
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Applications/Games
 Source0:	https://downloads.sourceforge.net/crossfire/%{name}-%{version}.tar.gz
@@ -101,6 +101,7 @@ cd ..
 install -d build
 cd build
 %cmake .. \
+	-DBUILD_SHARED_LIBS=OFF \
 	-DLUA=ON
 
 %{__make}
